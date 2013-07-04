@@ -1,3 +1,3 @@
   clone it to ~
-  cd snipmate.vim
-  cp -R * ~/.vim
+  cd snipmate.vim;
+  cp -R * ~/.vim;
