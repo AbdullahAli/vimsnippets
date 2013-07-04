@@ -165,7 +165,7 @@ snippet Comp
 snippet Forw-
 	extend Forwardable
 # def self
-snippet defs
+snippet defself
 	def self.${1:class_method_name}
 		${2}
 	end
@@ -371,7 +371,7 @@ snippet seld
 	select do |${1:e}|
 		${2}
 	end
-snippet lam
+snippet lamdba
 	lambda { |${1:args}| ${2} }
 snippet do
 	do |${1:variable}|
@@ -542,8 +542,53 @@ snippet sh=
 snippet shbe
 	${1:target}.should be_${2:result}
 
+snippet shared
+	#app/views/shared/_error_messages.html.erb
+	<% if object.errors.any? %>
+	<div class="alert alert-error">
+		<ul>
+			<% object.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
 
-#erb
-snippet <>
-	<%= ${1} =>
+snippet alert
+	alert: "${1}"${2}
 
+snippet flash_messages_file
+	#app/views/layouts_flash_error_messages.html.erb
+	<% if notice %>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+	<% end %>
+
+	<% if alert %>
+	<div class="alert alert-error">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= alert %>
+	</div>
+	<% end %>
+
+snippet rescue
+
+		${3}
+	rescue ${1:Exception} => ${2:e}
+	end
+
+snippet new_spec
+	require "spec_helper"
+
+	describe ${1} do
+		${2}
+	end
+
+snippet new_spec_migpay
+	require File.join( File.dirname(__FILE__), '..', "spec_helper" )
+
+	describe ${1} do
+		${2}
+	end
