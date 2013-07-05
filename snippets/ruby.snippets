@@ -372,7 +372,9 @@ snippet seld
 		${2}
 	end
 snippet lamdba
-	lambda { |${1:args}| ${2} }
+	lambda {
+	${1}
+	}${2}
 snippet do
 	do |${1:variable}|
 		${2}
@@ -595,3 +597,11 @@ snippet flash_messages_file
 		<%= alert %>
 	</div>
 	<% end %>
+
+snippet stubi
+	${1:instance}.stub!(:${2:method}).and_return(${3:return_value})${4}
+snippet stubc
+	${1:Class}.stub(:${2:method}).and_return(${3:return_value})${4}
+
+snippet fac
+	FactoryGirl.build(:${1:Class})${2}
