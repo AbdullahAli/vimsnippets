@@ -229,17 +229,29 @@ snippet form_tag
 	<%= form_tag ${1}_path, :id => "${2}", :method => "${3}" do %>
 		${4}
 	<% end %>
+snippet form_Tag
+	<%= form_tag ${1}_path, :id => "${2}", :method => "${3}" do %>
+		${4}
+	<% end %>
 
 snippet submit_tag
+	<%= submit_tag "${1}", :name => ${2:nil}, :class => "${3}" %>${4}
+snippet submit_Tag
 	<%= submit_tag "${1}", :name => ${2:nil}, :class => "${3}" %>${4}
 
 snippet button_tag
 	<%= button_tag "${1:Clear}", :id => "${2:clear_button}", :class => "${3:btn}", :type => "button" %>${4}
+snippet button_Tag
+	<%= button_tag "${1:Clear}", :id => "${2:clear_button}", :class => "${3:btn}", :type => "button" %>${4}
 
 snippet select_tag
 	<%= select_tag "${1:name}", options_for_select(${2:object}, params[:${3:key}]) %>${3}
+snippet select_Tag
+	<%= select_tag "${1:name}", options_for_select(${2:object}, params[:${3:key}]) %>${3}
 
 snippet label_tag
+	<%= label_tag "${2}" %>${2}
+snippet label_Tag
 	<%= label_tag "${2}" %>${2}
 
 snippet each
@@ -251,6 +263,8 @@ snippet text_field_tag
 	<%= text_field_tag :${1:name}, params[:${2:name}] %>${3}
 
 snippet link_to
+	<%= link_to "${1:name}", ${2:path}_path(${3:object.id}) %>${4}
+snippet link_To
 	<%= link_to "${1:name}", ${2:path}_path(${3:object.id}) %>${4}
 
 snippet shared
@@ -267,3 +281,30 @@ snippet shared
 snippet alert
 	alert: "${1}"${2}
 
+snippet shared
+	#app/views/shared/_error_messages.html.erb
+	<% if object.errors.any? %>
+	<div class="alert alert-error">
+		<ul>
+			<% object.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+snippet flash_messages_file
+	#app/views/layouts_flash_error_messages.html.erb
+	<% if notice %>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+	<% end %>
+
+	<% if alert %>
+	<div class="alert alert-error">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= alert %>
+	</div>
+	<% end %>
